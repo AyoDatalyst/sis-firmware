@@ -89,7 +89,7 @@ smartIrrigation
   sensors: soil1..soil4, waterLevel
   system:  mode, pump, threshold, waterLow, heartbeat
 sisUsers
-  <username>: name, userType, passHash
+  <username>: username, name, userType, passHash, created
 ```
 
 ## Security note
