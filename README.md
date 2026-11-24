@@ -63,4 +63,6 @@ Wi-Fi credentials and the Firebase URL in this repository are placeholders. Do n
 
 ## Author
 
-Ogunleke, Final Year Project.
+Ogunleke Samson A.
+University of Ibadan
+Final Year Project.
