@@ -1,0 +1,27 @@
+{
+  "smartIrrigation": {
+    "sensors": {
+      "soil1": 0,
+      "soil2": 0,
+      "soil3": 0,
+      "soil4": 0,
+      "waterLevel": 0
+    },
+    "system": {
+      "heartbeat": 0,
+      "mode": "\"AUTO\"",
+      "pump": false,
+      "threshold": "80",
+      "waterLow": true
+    }
+  },
+  "sisUsers": {
+    "agbeloba": {
+      "username": "Agbeloba",
+      "name": "Main Admin",
+      "userType": "admin",
+      "passHash": "<hash>",
+      "created": 0
+    }
+  }
+}
