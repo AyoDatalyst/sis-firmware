@@ -1,27 +1,33 @@
-{
-  "smartIrrigation": {
-    "sensors": {
-      "soil1": 0,
-      "soil2": 0,
-      "soil3": 0,
-      "soil4": 0,
-      "waterLevel": 0
+        ],
+        "hTemp": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "updated": 0,
+        "count": 0
+      },
+      "control": {
+        "rainDelay": false,
+        "enabled": true,
+        "probCloud": 0,
+        "probEffective": 0,
+        "adjust": 0,
+        "reason": 2,
+        "onAt": 80,
+        "offAt": 65,
+        "outlook": "Steady",
+        "rainConfirmed": false,
+        "soilRise": 0,
+        "soilCheck": 0
+      }
     },
-    "system": {
-      "heartbeat": 0,
-      "mode": "\"AUTO\"",
-      "pump": false,
-      "threshold": "80",
-      "waterLow": true
-    }
-  },
-  "sisUsers": {
-    "agbeloba": {
-      "username": "Agbeloba",
-      "name": "Main Admin",
-      "userType": "admin",
-      "passHash": "<hash>",
-      "created": 0
+    "local": {
+      "available": false,
+      "type": "none"
     }
   }
 }
