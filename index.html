@@ -70,7 +70,12 @@ input[type=range]{width:100%;margin:10px 0;accent-color:var(--accent)}
 .item{display:flex;align-items:center;gap:16px;padding:16px;font-size:17px;font-weight:700;border:0;background:none;color:var(--txt);text-align:left;width:100%;border-bottom:1px solid var(--line)}
 .item.on{background:var(--soft);color:var(--accent)}
 .item span{font-size:22px;width:28px;text-align:center}
-.dfoot{margin-top:auto;padding:14px;color:var(--mut);font-size:12px;text-align:center}
+.dfoot{padding:6px 14px 14px;color:var(--mut);font-size:12px;text-align:center}
+.dlwrap{margin-top:auto;display:flex;justify-content:center;padding:16px 16px 6px}
+.dlbtn{width:100%;max-width:260px;background:linear-gradient(135deg,#0d2b6b 0%,#0a1f4f 100%);color:#fff;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:14px 16px;font-size:15px;font-weight:700;letter-spacing:.3px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:10px;text-align:center;box-shadow:0 6px 16px rgba(10,31,79,.35),inset 0 1px 0 rgba(255,255,255,.14);transition:transform .15s,box-shadow .15s,filter .15s}
+.dlbtn svg{width:20px;height:20px;flex:none}
+.dlbtn:hover{filter:brightness(1.15);box-shadow:0 8px 20px rgba(10,31,79,.45),inset 0 1px 0 rgba(255,255,255,.18)}
+.dlbtn:active{transform:translateY(1px) scale(.98);box-shadow:0 3px 8px rgba(10,31,79,.4)}
 #modal{position:fixed;inset:0;background:#0008;z-index:80;display:none;align-items:center;justify-content:center;padding:20px}
 #modal.on{display:flex}
 .mbox{background:#fff;border-radius:18px;padding:20px;max-width:360px;width:100%;text-align:center}
@@ -189,6 +194,69 @@ pre{padding:12px;font-size:11px;white-space:pre-wrap;color:var(--mut)}
 .badge{font-size:12px;font-weight:800;padding:4px 10px;border-radius:12px;background:var(--soft);color:var(--accent);text-transform:capitalize}
 .badge.admin{background:#fde8e5;color:var(--red)}.badge.member{background:#fff3dc;color:var(--amber)}
 .urow .btn{padding:8px 14px;font-size:14px}
+
+/* ---- weather / local sensor ---- */
+@media (max-width:999px){.chip.rbar{margin-bottom:14px;border-radius:14px}}
+@media (min-width:1000px){#p1 .chip.rbar.card,#p4 .chip.rbar.card,.chip.rbar.card.on,.chip.rbar.card.off{border-left:1px solid #e4e7f3}}
+.chip.rbar>h2{margin:0;font-weight:700}
+.kgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1px;background:var(--line);border-top:1px solid var(--line)}
+.kp{background:var(--card);padding:12px 14px;min-width:0}
+.kp span{display:block;font-size:12px;color:var(--mut);font-weight:600;margin-bottom:2px}
+.kp b{font-size:20px;color:var(--accent);font-weight:800;overflow-wrap:anywhere}
+.kp small{display:block;font-size:11.5px;color:var(--mut);margin-top:2px;line-height:1.35}
+.whero{display:flex;align-items:center;gap:14px;padding:16px 18px;flex-wrap:wrap}
+.wico{font-size:56px;line-height:1}
+.wtemp{font-size:46px;font-weight:800;color:var(--accent);line-height:1}
+.wcond{font-size:17px;font-weight:700}
+.wsrc{font-size:12px;color:var(--mut);margin-top:3px}
+.pill{display:inline-block;font-size:12px;font-weight:800;padding:4px 10px;border-radius:12px;background:var(--soft);color:var(--accent);margin:4px 6px 0 0}
+.pill.red{background:#fde8e5;color:var(--red)}.pill.grn{background:#e3f6e8;color:var(--green)}.pill.amb{background:#fff3dc;color:var(--amber)}
+.rainbox{padding:6px 18px 14px}
+.rainbox .rl{display:flex;justify-content:space-between;font-weight:800;color:var(--accent);font-size:15px}
+.rtrack{position:relative;height:12px;background:var(--soft);border-radius:8px;margin:8px 0 4px;overflow:hidden}
+.rtrack i{display:block;height:100%;width:0;transition:width .5s}
+.rtrack u{position:absolute;top:0;bottom:0;width:2px;background:#0006}
+.hstrip{display:flex;gap:8px;overflow-x:auto;padding:12px 14px;border-top:1px solid var(--line)}
+.hh{min-width:68px;text-align:center;background:var(--soft);border-radius:10px;padding:8px 6px;font-size:12px;color:var(--mut);font-weight:600}
+.hh b{display:block;font-size:16px;color:var(--accent)}
+.note{padding:12px 16px;font-size:13px;line-height:1.55;color:var(--mut);border-top:1px solid var(--line)}
+.note.bad{color:var(--red);font-weight:700}
+#cwBody .note,#lcBody .note{text-align:center}
+#lcBody .whero{flex-direction:column;justify-content:center;text-align:center;gap:8px}
+#lcBody .whero>div{text-align:center}
+.nodata{padding:22px 18px;text-align:center;line-height:1.6;color:var(--mut);font-size:14px}
+.nodata b{display:block;color:var(--accent);font-size:17px;margin-bottom:6px}
+#cwBody{min-height:560px}#lcBody{min-height:400px}.kgrid .kp{min-height:88px}
+.sk{background:linear-gradient(90deg,var(--soft) 25%,#fff 50%,var(--soft) 75%);background-size:200% 100%;animation:skm 1.3s linear infinite;border-radius:8px}
+@keyframes skm{to{background-position:-200% 0}}
+.skh{display:flex;align-items:center;gap:14px;padding:16px 18px}.skh .sk.c{width:64px;height:64px;border-radius:50%;flex:none}
+.skh .skt{flex:1}.skl{height:12px;margin:8px 0}.skr{padding:6px 18px 14px}.skstrip{display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--line)}
+.skstrip .sk{width:64px;height:78px;flex:none}.skn{padding:14px 18px}
+.chip.rbar{display:block;padding:0;text-align:left;font-size:16px;color:var(--txt)}.rchk{margin-top:10px;border-top:1px solid var(--line);padding-top:8px}.rchk:empty{display:none}.rrow{display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:3px 0}.rrow span{color:var(--mut);font-weight:600}.rrow b{text-align:right;font-weight:700}
+.rsub{text-align:center;color:var(--mut);font-size:12.5px;font-weight:500;line-height:1.4;margin-top:6px}
+.chip.rbar.ghost .pad{background:linear-gradient(90deg,var(--soft) 25%,#fff 50%,var(--soft) 75%);background-size:200% 100%;animation:skm 1.3s linear infinite}.chip.rbar.ghost .pad>*{visibility:hidden}
+
+@media (min-width:1000px){
+  #p4.on{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:22px;align-items:start}
+  #p4 .chip{grid-column:1/-1;order:0}
+  .c-cloud,.c-local{grid-column:1/-1}
+  #p1 .chip.rbar{grid-column:1/-1;order:1;border-left-width:6px}
+  .c-soil{order:3}.c-water{order:4}
+  .c-pump{grid-row:1/4}
+  .c-rain{grid-column:6/-1;grid-row:3}
+  #p2.on{grid-template-rows:auto auto auto}
+}
+@media (min-width:1280px){
+  #p1 .chip{grid-row:1}
+  #p1 .chip.rbar{grid-row:2}
+  .c-sys{grid-row:3}
+  .c-soil,.c-water{grid-row:4}
+  #p1 .credit{grid-row:5}
+  .c-cloud{grid-column:1/8;align-self:stretch}
+  .c-local{grid-column:8/-1;align-self:stretch}
+  #p4 .chip{grid-row:1}
+  .c-cloud,.c-local{grid-row:2}
+}
 </style>
 </head>
 <body>
@@ -207,9 +275,11 @@ pre{padding:12px;font-size:11px;white-space:pre-wrap;color:var(--mut)}
   <div class="dtitle">Smart Irrigation System</div>
   <button class="item on" id="nav1" onclick="go(1)"><span>📈</span>Dashboard</button>
   <button class="item" id="nav2" onclick="go(2)"><span>🎛️</span>Set Threshold</button>
+  <button class="item" id="nav4" onclick="go(4)"><span>🌦️</span>Weather</button>
   <button class="item" id="nav3" onclick="go(3)"><span>👥</span>Add / Manage Users</button>
   <button class="item" onclick="showAbout()"><span>ℹ️</span>About</button>
   <button class="item" onclick="showExit()"><span>🚪</span>Exit</button>
+  <div class="dlwrap"><button class="dlbtn" onclick="downloadApp()"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>Download Mobile App</button></div>
   <div class="dfoot">Project by Ogunleke Samson Abidemi</div>
 </aside>
 
@@ -219,6 +289,8 @@ pre{padding:12px;font-size:11px;white-space:pre-wrap;color:var(--mut)}
   <!-- DASHBOARD -->
   <section class="page on" id="p1">
     <div class="chip off" id="chip"><i class="dot"></i><div><span id="chipTxt">OFFLINE</span><small id="chipSub">Waiting for data…</small></div></div>
+
+    <div class="chip rbar card" id="rchip"><h2>Rain delay status</h2><div class="pad"><div class="tank"><span>Rain chance:</span><span id="rchipPct">-- %</span></div><div class="tbar"><i id="rchipBar"></i></div><div class="wstat" id="rchipTxt">Waiting for data…</div><div class="rsub" id="rchipSub"></div><div class="rchk" id="rchipChk"></div></div></div>
 
     <div class="card c-soil"><h2>Soil Moisture</h2>
       <div id="sensors"></div>
@@ -254,6 +326,7 @@ pre{padding:12px;font-size:11px;white-space:pre-wrap;color:var(--mut)}
         <div class="plabel" id="pstate">Pump: OFF</div>
         <div class="lvl"><span>Water Level:</span><span id="wl">-- %</span></div>
         <div class="wstat" id="wstat2">--</div>
+        <div class="wstat" id="rstat2">--</div>
       </div>
     </div>
 
@@ -273,7 +346,19 @@ pre{padding:12px;font-size:11px;white-space:pre-wrap;color:var(--mut)}
         <div class="hint">AUTO mode: the pump starts when 3 of the 4 soil sensors read 30% or less. It stops when the average reaches the threshold. The pump is locked when the tank is 20% or below (or the water level sensor fails) and allowed again at 30% or above.</div>
       </div>
     </div>
+    <div class="card c-rain"><h2>Rain Delay (cloud forecast)</h2>
+      <div class="pad">
+        <div class="seg"><button id="rOn" onclick="setRain(true)">ON</button><button id="rOff" onclick="setRain(false)">OFF</button></div>
+        <div class="hint" id="rainHint"></div>
+      </div>
+    </div>
     <details class="card" style="display:none"><summary>Debug: data links and raw database</summary><pre id="raw"></pre></details>
+  </section>
+  <!-- WEATHER -->
+  <section class="page" id="p4">
+    <div class="chip rbar card" id="rchip4"><h2>Rain delay status</h2><div class="pad"><div class="tank"><span>Rain chance:</span><span id="rchip4Pct">-- %</span></div><div class="tbar"><i id="rchip4Bar"></i></div><div class="wstat" id="rchip4Txt">Waiting for data…</div><div class="rsub" id="rchip4Sub"></div><div class="rchk" id="rchip4Chk"></div></div></div>
+    <div class="card c-cloud"><h2>☁️ Cloud Weather Forecast</h2><div id="cwBody"><div class="nodata">Loading weather…</div></div></div>
+    <div class="card c-local"><h2>🌡️ Local Weather Conditions</h2><div id="lcBody"><div class="nodata">Waiting for data…</div></div></div>
   </section>
   <!-- USERS (admin only) -->
   <section class="page" id="p3">
@@ -296,7 +381,7 @@ pre{padding:12px;font-size:11px;white-space:pre-wrap;color:var(--mut)}
 
 <script>
 /* ================= CONFIG ================= */
-const HOST = "https://YOUR-PROJECT-ID-default-rtdb.firebaseio.com";
+const HOST = "https://ogunleke-smart-irrigation-iot-default-rtdb.firebaseio.com";
 const BASE_NODE = "smartIrrigation";   // main node of your database
 const AUTH = "";                       // optional token if database rules are not public
 const POLL_MS = 1000;                  // sensors update every 1 s
@@ -304,7 +389,11 @@ const NET_TIMEOUT_MS = 4000;           // a request slower than this counts as a
 const UPDATE_TIMEOUT_MS = 15000;       // nothing changing in Firebase for this long = system OFFLINE
 const MANUAL_RETURN_S = 300;           // MANUAL returns to AUTO after 5 min
 const HIDE_THRESHOLD_IN = "AUTO";      // "AUTO", "MANUAL" or "" (always show)
-const LOCK_AT = 20, UNLOCK_AT = 30;    // tank <= 20 % locks pump, >= 30 % releases it
+const LOCK_AT = 20, UNLOCK_AT = 30;
+const WX_LAT = 7.4455588, WX_LON = 3.9000604;   // farm location (same as the ESP32)
+const WX_STALE_S = 30*60;              // ESP32 weather older than this = browser fetches its own copy
+const WX_DIRECT_MS = 10*60*1000;       // browser refresh time (only used when the ESP32 data is old)
+const RAIN_ON = 80, RAIN_OFF = 65;     // rain delay starts at 80 %, ends below 65 % (same as the ESP32)    // tank <= 20 % locks pump, >= 30 % releases it
 /* Preferred data paths. If one is missing, the app searches the database for a key with a matching name. */
 const PATHS = {
   soil:[BASE_NODE+"/sensors/soil1",BASE_NODE+"/sensors/soil2",BASE_NODE+"/sensors/soil3",BASE_NODE+"/sensors/soil4"],
@@ -313,7 +402,8 @@ const PATHS = {
   mode:BASE_NODE+"/system/mode",
   thr:BASE_NODE+"/system/threshold",
   hb:BASE_NODE+"/system/heartbeat",
-  low:BASE_NODE+"/system/waterLow"
+  low:BASE_NODE+"/system/waterLow",
+  rain:BASE_NODE+"/system/rainDelayEnabled"
 };
 const NAMES = {
   soil:[1,2,3,4].map(i=>["soil"+i,"sensor"+i,"moisture"+i,"soilmoisture"+i,"soilsensor"+i,"s"+i]),
@@ -336,17 +426,24 @@ const A=AUTH?"?auth="+AUTH:"";
 const pathUrl=p=>HOST+"/"+p+".json"+A;
 const norm=s=>String(s).toLowerCase().replace(/[^a-z0-9]/g,"");
 
+/* ---------- download the mobile app ---------- */
+const APP_DOWNLOAD_URL="https://drive.google.com/drive/folders/1Zfftwx6jq3NFE9-nyFVdK9b0xN3Pbia5";
+function downloadApp(){
+  drawer(false);
+  try{if(window.open(APP_DOWNLOAD_URL,"_blank"))return;}catch(e){}
+  window.location.href=APP_DOWNLOAD_URL;
+}
 /* ---------- splash / nav / dialogs ---------- */
 setTimeout(()=>$("splash").classList.add("hide"),1700);
 function drawer(o){$("drawer").classList.toggle("on",o);$("scrim").classList.toggle("on",o);}
-function go(n){if(n===3&&!isAdmin()){toast("Admin access only");return;}[1,2,3].forEach(i=>{$("p"+i).classList.toggle("on",i===n);$("nav"+i).classList.toggle("on",i===n)});$("title").textContent=n===1?"Dashboard":n===2?"Threshold":"Users";drawer(false);if(n===1)drawChart();if(n===3)loadUsers();}
+function go(n){if(n===3&&!isAdmin()){toast("Admin access only");return;}[1,2,3,4].forEach(i=>{$("p"+i).classList.toggle("on",i===n);$("nav"+i).classList.toggle("on",i===n)});$("title").textContent=n===1?"Dashboard":n===2?"Threshold":n===4?"Weather":"Users";drawer(false);if(n===1)drawChart();if(n===3)loadUsers();if(n===4)renderWeather();}
 let tt;function toast(m){const t=$("toast");t.textContent=m;t.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("on"),3200);}
 function modal(h){$("mbox").innerHTML=h;$("modal").classList.add("on");}
 function closeModal(){$("modal").classList.remove("on");}
 function showAbout(){drawer(false);modal(`<h3>Smart Irrigation System</h3>
-<p>An IoT smart irrigation controller with 4 soil moisture sensors and a water tank level sensor. The ESP32 reads the sensors, controls the pump and sends data to Firebase. This app shows the live readings and lets you set the mode, the pump and the moisture threshold.</p>
+<p>An IoT smart irrigation controller with 4 soil moisture sensors and a water tank level sensor. The ESP32 reads the sensors, controls the pump and sends data to Firebase. This app shows the live readings and lets you set the mode, the pump and the moisture threshold. It also shows the cloud weather forecast (Open-Meteo) and the local weather conditions (temperature and pressure) from a BMP280 sensor module, and can hold the pump back when rain is expected.</p>
 <p><b>Project by:</b> Ogunleke Samson Abidemi<br><b>Supervisor:</b> Engr. O.A. Omole</p>
-<p style="color:var(--mut);font-size:12px">Version 2.1</p>
+<p style="color:var(--mut);font-size:12px">Version 2.2</p>
 <div class="brow"><button class="btn" onclick="closeModal()">Close</button></div>`);}
 function showExit(){drawer(false);modal(`<h3>Exit app?</h3><p>Do you want to close the Smart Irrigation app?</p>
 <div class="brow"><button class="btn gr" onclick="closeModal()">Cancel</button><button class="btn red" onclick="doExit()">Exit</button></div>`);}
@@ -387,7 +484,7 @@ function eff(key,dbv){const c=cmd[key];if(!c)return dbv;if(c.sent&&c.v===dbv)del
 const modeAuto=()=>eff("mode",dbAuto());
 function pumpOn(){
   const raw=modeAuto()?dbPump():eff("pump",dbPump());
-  return raw&&!waterLocked().locked;
+  return raw&&!waterLocked().locked&&!rainOn();
 }
 /* water lock from the tank level sensor: error or <=20 % locks, >=30 % releases (hysteresis) */
 function waterLocked(){
@@ -434,7 +531,7 @@ function housekeeping(){
     const c=cmd[k],age=now()-c.t;
     if((k==="pump"||k==="mode")&&age>MANUAL_RETURN_S*1000){delete cmd[k];continue;}      /* manual commands time out after 5 min */
     if(c.sent&&fails===0){
-      const dv=k==="mode"?dbAuto():k==="pump"?dbPump():clean(get("thr"));
+      const dv=k==="mode"?dbAuto():k==="pump"?dbPump():k==="rain"?dbRainOn():clean(get("thr"));
       const want=k==="thr"?clean(c.v):c.v;
       if(String(dv)===String(want)||now()-c.sent>8000)delete cmd[k];                     /* confirmed, or the system did not accept it */
     }
@@ -477,7 +574,7 @@ function render(){
 
   const on=pumpOn(),auto=modeAuto();
   $("pimg").src=on?IMG.ON:IMG.OFF;
-  $("pimg").classList.toggle("dis",auto||(w.locked&&!on));
+  $("pimg").classList.toggle("dis",auto||(w.locked&&!on)||(rainOn()&&!on));
   $("pstate").textContent="Pump: "+(on?"ON":"OFF");$("pstate").style.color=on?"var(--green)":"var(--red)";
   $("mAuto").className=auto?"on":"";$("mMan").className=auto?"":"on";
   $("modeHint").textContent=auto?"AUTO: the controller runs the pump from the sensors. Switch to MANUAL to use the pump button.":"MANUAL: tap the pump image to switch the pump ON / OFF.";
@@ -487,6 +584,7 @@ function render(){
   $("dTime").textContent=lastOk?new Date(lastOk).toLocaleTimeString():"--";
   $("thCard").style.display=(HIDE_THRESHOLD_IN==="AUTO"&&auto)||(HIDE_THRESHOLD_IN==="MANUAL"&&!auto)?"none":"block";
   $("raw").textContent="Data links found:\n"+JSON.stringify(res,null,1)+"\n\nPending commands: "+JSON.stringify(cmd)+"\n\nRaw database:\n"+JSON.stringify(tree,null,2);
+  renderWeather(up);
   if(!auto){if(manualSince===null)manualSince=now();}else manualSince=null;
 }
 setInterval(()=>{
@@ -509,6 +607,7 @@ function togglePump(){
   if(!need(togglePump))return;
   if(modeAuto()){toast("AUTO mode: switch to MANUAL first");return;}
   const on=pumpOn(),w=waterLocked();
+  if(!on&&rainOn()){toast("RAIN DELAY: rain is expected, the pump is blocked");return;}
   if(!on&&w.locked){toast(w.err?"Water level sensor error: pump is blocked":"LOW WATER: pump is blocked until the tank is "+UNLOCK_AT+"% or more");return;}
   queue("pump",!on,!on);                                  /* image changes instantly */
 }
@@ -547,7 +646,226 @@ function drawChart(){
   g.globalAlpha=1;
 }
 
-render();poll();setInterval(poll,POLL_MS);
+
+/* ================= CLOUD WEATHER + LOCAL SENSOR ================= */
+let wxDirect=null,wxTry=0,wxBusy=false,wxCnt,wxSeen=0,lastUp=false;
+const lv=p=>leaves[BASE_NODE+"/"+p];
+const num=v=>{if(v===null||v===undefined||v==="")return null;const n=typeof v==="number"?v:parseFloat(v);return isNaN(n)?null:n;};
+const f1=(v,d)=>v===null||v===undefined?"--":Number(v).toFixed(d===undefined?1:d);
+const dbRainOn=()=>{const v=leaves[PATHS.rain];return !(v===false||["FALSE","0","OFF"].includes(clean(v)));};
+const rainEnabled=()=>eff("rain",dbRainOn());
+const rainOn=()=>rainEnabled()&&lv("weather/control/rainDelay")===true;
+/* soil moisture rose while the pump was blocked = it is really raining (set by the ESP32) */
+const rainSeen=()=>lastUp&&rainOn()&&lv("weather/control/rainConfirmed")===true;
+
+function condText(c,day){
+  if(c===0)return day?"Sunny":"Clear";
+  if(c===1)return day?"Mostly sunny":"Mostly clear";
+  if(c===2)return "Partly cloudy";
+  if(c===3)return "Cloudy";
+  if(c===45||c===48)return "Foggy";
+  if(c>=51&&c<=57)return "Drizzle";
+  if(c===61||c===63)return "Rain";
+  if(c===65)return "Heavy rain";
+  if(c===66||c===67)return "Freezing rain";
+  if((c>=71&&c<=77)||c===85||c===86)return "Snow";
+  if(c===80||c===81)return "Rain showers";
+  if(c===82)return "Heavy showers";
+  if(c===95)return "Thunderstorm";
+  if(c===96||c===99)return "Thunder + hail";
+  return "Unknown";
+}
+function condIcon(c,day){
+  if(c===0)return day?"☀️":"🌙";
+  if(c===1)return day?"🌤️":"🌙";
+  if(c===2)return day?"⛅":"☁️";
+  if(c===3)return "☁️";
+  if(c===45||c===48)return "🌫️";
+  if(c>=51&&c<=57)return "🌦️";
+  if(c>=61&&c<=67)return "🌧️";
+  if((c>=71&&c<=77)||c===85||c===86)return "❄️";
+  if(c>=80&&c<=82)return "🌦️";
+  if(c>=95)return "⛈️";
+  return "🌡️";
+}
+function dewPoint(t,h){if(t===null||h===null||h<=0)return null;const g=Math.log(h/100)+17.62*t/(243.12+t);return 243.12*g/(17.62-g);}
+function compass(d){return d===null?"--":["N","NE","E","SE","S","SW","W","NW"][Math.round(d/45)%8];}
+function outlook(w){
+  /* same rule as the ESP32: cloud forecast (3 h) and local sensor (last hour) must not disagree */
+  let c=0,l=0;
+  if(w&&w.temp!==null&&w.tempSoon!==null){const d=w.tempSoon-w.temp;c=d<=-1.5?-1:d>=1.5?1:0;}
+  if(lv("local/available")===true){const t=num(lv("local/tempTrend1h"));if(t!==null)l=t<=-1?-1:t>=1?1:0;}
+  const s=(c!==0&&l!==0&&c!==l)?0:(c!==0?c:l);
+  return s<0?"Cooling":s>0?"Warming":"Steady";
+}
+
+/* ----- weather from the ESP32 (Firebase) ----- */
+function espWx(){
+  const t=num(lv("weather/cloud/temperature"));if(t===null)return null;
+  let upd=num(lv("weather/cloud/updated"));
+  if(!upd)upd=wxSeen?wxSeen/1000:0;          /* ESP32 clock not synced: use the time the app saw it change */
+  if(!upd||Date.now()/1000-upd>WX_STALE_S)return null;
+  const hp=[],ht=[];for(let i=0;i<6;i++){hp.push(num(lv("weather/cloud/hProb/"+i)));ht.push(num(lv("weather/cloud/hTemp/"+i)));}
+  const code=num(lv("weather/cloud/code"))||0,day=lv("weather/cloud/isDay")!==false;
+  return {src:"ESP32 (via Firebase)",updated:upd,temp:t,feels:num(lv("weather/cloud/feelsLike")),hum:num(lv("weather/cloud/humidity")),
+    press:num(lv("weather/cloud/pressure")),pressSurf:num(lv("weather/cloud/surfacePressure")),wind:num(lv("weather/cloud/windSpeed")),gust:num(lv("weather/cloud/windGust")),
+    windDir:num(lv("weather/cloud/windDir")),cloud:num(lv("weather/cloud/cloudCover")),rainNow:num(lv("weather/cloud/rainNow")),
+    rainProb:num(lv("weather/cloud/rainProb")),rainNext:num(lv("weather/cloud/rainNext")),hours:num(lv("weather/cloud/lookaheadHours"))||3,
+    code:code,day:day,tempSoon:num(lv("weather/cloud/tempSoon")),elev:num(lv("weather/cloud/elevation")),
+    dayMax:num(lv("weather/cloud/dayMax")),dayMin:num(lv("weather/cloud/dayMin")),dayProb:num(lv("weather/cloud/dayRainProb")),daySum:num(lv("weather/cloud/dayRainSum")),
+    uv:num(lv("weather/cloud/uvMax")),sunrise:lv("weather/cloud/sunrise")||"",sunset:lv("weather/cloud/sunset")||"",hp:hp,ht:ht};
+}
+/* ----- weather straight from Open-Meteo (used only while the ESP32 has no recent weather) ----- */
+const WX_URL="https://api.open-meteo.com/v1/forecast?latitude="+WX_LAT+"&longitude="+WX_LON+
+  "&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,cloud_cover,pressure_msl,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m"+
+  "&hourly=temperature_2m,precipitation_probability,precipitation&forecast_hours=6"+
+  "&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,uv_index_max,sunrise,sunset&forecast_days=1&timezone=auto";
+async function fetchDirect(){
+  if(wxBusy)return;wxBusy=true;wxTry=now();
+  try{
+    const ac=new AbortController(),tm=setTimeout(()=>ac.abort(),12000);
+    let j;try{const r=await fetch(WX_URL,{cache:"no-store",signal:ac.signal});if(!r.ok)throw r.status;j=await r.json();}finally{clearTimeout(tm);}
+    const c=j.current,h=j.hourly||{},d=j.daily||{},LA=3;
+    const hp=(h.precipitation_probability||[]).slice(0,6),ht=(h.temperature_2m||[]).slice(0,6),hr=(h.precipitation||[]).slice(0,6);
+    wxDirect={src:"Open-Meteo (direct from this device)",updated:Date.now()/1000,temp:c.temperature_2m,feels:c.apparent_temperature,hum:c.relative_humidity_2m,
+      press:c.pressure_msl,pressSurf:c.surface_pressure,wind:c.wind_speed_10m,gust:c.wind_gusts_10m,windDir:c.wind_direction_10m,cloud:c.cloud_cover,rainNow:c.precipitation,
+      rainProb:Math.max(0,...hp.slice(0,LA).filter(v=>v!==null)),rainNext:hr.slice(0,LA).reduce((a,b)=>a+(b||0),0),hours:LA,
+      code:c.weather_code,day:c.is_day===1,tempSoon:ht[3]===undefined?null:ht[3],elev:j.elevation,
+      dayMax:(d.temperature_2m_max||[null])[0],dayMin:(d.temperature_2m_min||[null])[0],dayProb:(d.precipitation_probability_max||[null])[0],daySum:(d.precipitation_sum||[null])[0],
+      uv:(d.uv_index_max||[null])[0],sunrise:((d.sunrise||[""])[0]||"").slice(11,16),sunset:((d.sunset||[""])[0]||"").slice(11,16),hp:hp,ht:ht};
+  }catch(e){}
+  wxBusy=false;
+}
+function wxTick(){
+  if(espWx())return;
+  if(!everLoaded&&fails<2)return;                       /* wait: the ESP32 data may still be loading */
+  if(now()-wxTry<(wxDirect?WX_DIRECT_MS:60000))return;
+  fetchDirect();
+}
+setInterval(wxTick,5000);
+const wxData=()=>espWx()||(wxDirect&&Date.now()/1000-wxDirect.updated<3600?wxDirect:null);
+
+/* ----- rain delay banner ----- */
+function rainInfo(up){
+  const en=rainEnabled(),e=espWx(),w=wxData();
+  if(!en)return {cls:"",t:"Switched OFF",s:"The rain prediction is off, so the pump runs normally in AUTO and MANUAL",short:"Rain delay feature is OFF",sc:"var(--mut)",pct:null};
+  if(up&&e&&lv("weather/control/probEffective")!==undefined){
+    const pe=num(lv("weather/control/probEffective")),hrs=e.hours;
+    if(lv("weather/control/rainDelay")===true)return {cls:"off",t:rainSeen()?"RAINING: DELAY ACTIVE":"RAIN DELAY ACTIVE",s:rainSeen()?"Soil moisture rose "+(num(lv("weather/control/soilRise"))||0)+" points while the pump was off, so it is really raining. Rain chance "+pe+"%. Pump blocked in AUTO and MANUAL":"Rain chance "+pe+"% in the next "+hrs+" h: pump blocked in AUTO and MANUAL",short:rainSeen()?"Raining: pump blocked":"RAIN DELAY: pump blocked",sc:"var(--red)",pct:pe};
+    return {cls:"on",t:"Not needed",s:"Rain chance is "+(pe===null?"--":pe)+"% for the next "+hrs+" h, so the pump is allowed. The delay starts only if it reaches "+RAIN_ON+"%",short:"Rain delay: clear",sc:"var(--green)",pct:pe};
+  }
+  if(w)return {cls:"",t:"Waiting for data",s:"Forecast rain chance "+w.rainProb+"% (seen by this device). The system has no recent weather yet, so the delay is not active",short:"Rain delay: waiting for data",sc:"var(--amber)",pct:w.rainProb};
+  return {cls:"",t:"No weather data",s:"Weather not loaded yet",short:"Rain delay: no data",sc:"var(--mut)",pct:null,ghost:skelOn()};
+}
+function rainChecks(){
+  if(!rainEnabled())return "";
+  const w=wxData(),rn=w?w.rainNow:null,sc=num(lv("weather/control/soilCheck")),sr=num(lv("weather/control/soilRise"))||0;
+  const wr=rn===null||rn===undefined?"No data":rn>0?"Raining now · "+f1(rn)+" mm":"No rain reported now";
+  const so=!lastUp?"No data":sc===2?"Rain confirmed · +"+sr+" points":sc===3?"Soil saturated: rain can't be confirmed":sc===1?"Watching, no rise yet":"Checks only while the delay is active";
+  const row=(l,v,on)=>`<div class="rrow"><span>${l}</span><b style="color:${on?"var(--accent)":"var(--mut)"}">${v}</b></div>`;
+  return row("☁️ Weather service",wr,rn>0)+row("🌱 Soil moisture",so,sc===2);
+}
+function paintBanner(id,r){
+  $(id).className="chip rbar card"+(r.ghost?" ghost":"");
+  const p=(r.pct===null||r.pct===undefined)?null:r.pct,col=p===null?"var(--mut)":p>=RAIN_ON?"var(--red)":p>=50?"var(--amber)":"var(--green)";
+  $(id+"Pct").textContent=p===null?"-- %":p+" %";
+  const b=$(id+"Bar");b.style.width=(p||0)+"%";b.style.background=col;
+  const t=$(id+"Txt");t.textContent=r.t;t.style.color=r.sc;
+  $(id+"Sub").textContent=r.s;
+  setHtml(id+"Chk",rainChecks());
+}
+
+/* ----- the two cards ----- */
+const lastHtml={};
+function setHtml(id,h){if(lastHtml[id]===h)return;lastHtml[id]=h;$(id).innerHTML=h;}
+const kp=(l,v,s)=>`<div class="kp"><span>${l}</span><b>${v}</b>${s?`<small>${s}</small>`:""}</div>`;
+function ago(t){const m=Math.max(0,Math.round((Date.now()/1000-t)/60));return m<1?"just now":m+" min ago";}
+function paintCloud(w,up){
+  if(!w){setHtml("cwBody",skelOn()?skelCloud():`<div class="nodata"><b>Loading weather…</b>Waiting for the ESP32 or Open-Meteo. Check the internet connection.</div>`);return;}
+  const dew=dewPoint(w.temp,w.hum),out=outlook(w),wet=w.rainNow!==null&&w.rainNow!==undefined&&w.rainNow>0;
+  const p=w.rainProb===null?0:w.rainProb,col=p>=RAIN_ON?"var(--red)":p>=50?"var(--amber)":"var(--green)";
+  const oc=out==="Cooling"?"amb":out==="Warming"?"red":"grn";
+  const strip=w.hp.map((v,i)=>`<div class="hh">${i===0?"Now":"+"+i+" h"}<b>${w.ht[i]===null||w.ht[i]===undefined?"--":Math.round(w.ht[i])+"°"}</b>☔ ${v===null||v===undefined?"--":v+"%"}</div>`).join("");
+  setHtml("cwBody",`<div class="whero"><div class="wico">${wet?"🌧️":condIcon(w.code,w.day)}</div>
+    <div><div class="wtemp">${f1(w.temp)}°C</div><div class="wcond">${wet?"Raining":condText(w.code,w.day)}</div>
+    <div class="wsrc">Updated ${ago(w.updated)}</div></div>
+    <div><span class="pill ${oc}">${out==="Cooling"?"❄️":out==="Warming"?"🔥":"➖"} ${out}</span>
+    <span class="pill">${w.day?"Daytime":"Night"}</span>${wet?'<span class="pill amb">🌧️ Raining now · '+f1(w.rainNow)+' mm (weather service)</span>':""}</div></div>
+    <div class="rainbox"><div class="rl"><span>Rain chance (next ${w.hours} h)</span><span style="color:${col}">${w.rainProb===null?"--":w.rainProb+"%"}</span></div>
+    <div class="rtrack"><i style="width:${p}%;background:${col}"></i><u style="left:${RAIN_ON}%"></u></div>
+    <div class="hint" style="margin-top:2px;text-align:left">The line marks ${RAIN_ON}%: the rain delay starts there.</div></div>
+    <div class="kgrid">
+      ${kp("Temperature",f1(w.temp)+" °C","Feels like "+f1(w.feels)+" °C")}
+      ${kp("Humidity",f1(w.hum,0)+" %","Dew point "+f1(dew)+" °C")}
+      ${kp("Pressure (sea level)",f1(w.press)+" hPa","Surface "+f1(w.pressSurf)+" hPa")}
+      ${kp("Wind",f1(w.wind,0)+" km/h "+compass(w.windDir),"Gusts "+f1(w.gust,0)+" km/h")}
+      ${kp("Cloud cover",f1(w.cloud,0)+" %",condText(w.code,w.day))}
+      ${kp("Rain now",f1(w.rainNow)+" mm","Expected next "+w.hours+" h: "+f1(w.rainNext)+" mm")}
+      ${kp("Today high / low",f1(w.dayMax,0)+"° / "+f1(w.dayMin,0)+"°","Temp in 3 h: "+f1(w.tempSoon)+" °C")}
+      ${kp("Rain today",f1(w.daySum)+" mm","Max chance "+(w.dayProb===null?"--":w.dayProb)+" %")}
+      ${kp("UV index (max)",f1(w.uv),"Sunrise "+(w.sunrise||"--")+" · Sunset "+(w.sunset||"--"))}
+      ${kp("Elevation",f1(w.elev,0)+" m","Used for sea-level pressure")}
+    </div>
+    <div class="hstrip">${strip}</div>
+    <div class="note">Cloud data is a regional model (about 1-10 km). The local weather conditions show what is really happening at the farm.</div>`);
+}
+function trendWord(d){return d<=-3?"Falling fast":d<=-1?"Falling":d>=3?"Rising fast":d>=1?"Rising":"Steady";}
+function paintLocal(w,up){
+  const lcCard=document.querySelector(".c-local");
+  lcCard.style.display=(lv("local/available")===false&&!skelOn())?"none":"";
+  if(lv("local/available")!==true&&skelOn()){setHtml("lcBody",skelLocal());return;}
+  if(lv("local/available")===undefined){setHtml("lcBody",`<div class="nodata"><b>Waiting for data…</b>Waiting for the ESP32 to send its local weather readings.</div>`);return;}
+  if(lv("local/available")!==true){
+    setHtml("lcBody","");
+    return;
+  }
+  const T=num(lv("local/temperature")),P=num(lv("local/pressure")),PS=num(lv("local/seaLevelPressure"));
+  const tr=num(lv("local/pressureTrend3h")),mins=num(lv("local/trendMinutes"))||0,tt=num(lv("local/tempTrend1h"));
+  const dT=num(lv("local/tempDiff")),dP=num(lv("local/pressDiff")),adj=num(lv("local/adjust"))||0,st=lv("local/status")||"none";
+  const stTxt={ok:["grn","Agrees with the cloud"],check:["amb","Temperature differs a lot: check the placement (sun, heat, enclosure)"],suspect:["red","Pressure disagrees by 20 hPa or more: ignored for control"],no_cloud:["amb","No fresh cloud data to compare"],none:["amb","--"]}[st]||["amb",st];
+  const trendBox=tr===null?kp("Pressure trend (3 h)","--","Collecting data: "+Math.min(mins,120)+" of 120 min"):kp("Pressure trend (3 h)",(tr>0?"+":"")+f1(tr)+" hPa",trendWord(tr));
+  const adjTxt=adj>0?"+10 points: pressure falling fast → rain more likely":adj<0?"−10 points: pressure rising fast → rain less likely":"0: no change to the cloud forecast";
+  setHtml("lcBody",`<div class="whero"><div class="wico">🌡️</div><div><div class="wtemp">${f1(T)}°C</div><div class="wcond">Local sensor</div>
+    <div class="wsrc">${up?"Live from the ESP32":"System offline: last saved values"}</div></div>
+    <div><span class="pill ${stTxt[0]}">${stTxt[1]}</span></div></div>
+    <div class="kgrid">
+      ${kp("Pressure (station)",f1(P)+" hPa","Measured at the farm")}
+      ${kp("Pressure (sea level)",f1(PS)+" hPa","Corrected for altitude")}
+      ${trendBox}
+      ${kp("Temperature trend (1 h)",tt===null?"--":(tt>0?"+":"")+f1(tt)+" °C/h",tt===null?"Collecting data…":tt<=-1?"Cooling":tt>=1?"Warming":"Steady")}
+      ${kp("Compared with cloud",dT===null?"--":(dT>0?"+":"")+f1(dT)+" °C",dP===null?"":"Pressure "+(dP>0?"+":"")+f1(dP)+" hPa")}
+      ${kp("Rain chance adjustment",(adj>0?"+":adj<0?"−":"")+Math.abs(adj)+" %",adjTxt)}
+    </div>
+    <div class="note">How it is used: the cloud gives the rain probability. The local weather readings can only nudge it by ±10 points (needs 2 h of history), and a faulty or misplaced sensor is ignored. Without it the system works from the cloud alone.</div>`);
+}
+function renderWeather(up){
+  const cnt=num(lv("weather/cloud/count"));
+  if(cnt!==wxCnt){wxCnt=cnt;wxSeen=Date.now();}
+  if(up===true||up===false)lastUp=up;
+  const r=rainInfo(lastUp);
+  paintBanner("rchip",r);paintBanner("rchip4",r);
+  $("rstat2").textContent=r.short;$("rstat2").className="wstat";$("rstat2").style.color=r.sc;
+  const en=rainEnabled(),cc=canControl();
+  document.querySelector(".c-rain .seg").classList.toggle("lock",!cc);
+  $("rOn").className=en?"on":"";$("rOff").className=en?"":"on";
+  $("rainHint").textContent=(cc?"":"🔒 Log in as Admin or Member to change this setting. ")+(en?"ON: when the rain chance in the next 3 h is "+RAIN_ON+"% or more, the pump is blocked in AUTO and MANUAL mode, even if the soil is dry. It is released below "+RAIN_OFF+"%. Without recent weather data the system irrigates normally.":"OFF: the rain prediction is switched off. AUTO and MANUAL modes work normally, and the weather data is still shown.");
+  if($("p4").classList.contains("on")){const w=wxData();paintCloud(w,lastUp);paintLocal(w,lastUp);}
+}
+const canControl=()=>!!session&&(session.userType==="admin"||session.userType==="member");
+function setRain(on){
+  if(!need(()=>setRain(on)))return;
+  if(!canControl()){toast("Admin or Member access only");return;}
+  queue("rain",on,on);
+  toast("Rain delay "+(on?"enabled":"disabled"));
+}
+
+const SKEL_MS=10000,SKEL_T0=Date.now(),skelOn=()=>Date.now()-SKEL_T0<SKEL_MS;
+const skTile=()=>'<div class="kp"><div class="sk" style="height:10px;width:55%;margin-bottom:8px"></div><div class="sk" style="height:20px;width:75%"></div><div class="sk" style="height:10px;width:90%;margin-top:8px"></div></div>';
+const skHero=()=>'<div class="skh"><div class="sk c"></div><div class="skt"><div class="sk" style="height:26px;width:45%"></div><div class="sk skl" style="width:60%"></div><div class="sk skl" style="width:75%"></div></div><div class="sk" style="height:28px;width:90px;border-radius:20px"></div></div>';
+const skelCloud=()=>skHero()+'<div class="skr"><div class="sk skl" style="width:100%"></div><div class="sk" style="height:10px;width:100%;border-radius:6px"></div></div><div class="kgrid">'+skTile().repeat(10)+'</div><div class="skstrip">'+'<div class="sk"></div>'.repeat(6)+'</div><div class="skn"><div class="sk skl" style="width:80%"></div></div>';
+const skelLocal=()=>skHero()+'<div class="kgrid">'+skTile().repeat(6)+'</div><div class="skn"><div class="sk skl" style="width:85%"></div><div class="sk skl" style="width:60%"></div></div>';
+$("cwBody").innerHTML=skelCloud();$("lcBody").innerHTML=skelLocal();
+
 
 /* ================= LOGIN / USER ACCESS ================= */
 const SHA=(function(){const K=[],H0=[];let p=2,n=0;while(n<64){let ok=1;for(let i=2;i*i<=p;i++)if(p%i==0){ok=0;break}if(ok){if(n<8)H0[n]=(Math.pow(p,.5)%1*4294967296)|0;K[n]=(Math.pow(p,1/3)%1*4294967296)|0;n++}p++}
@@ -559,8 +877,8 @@ H[0]=(H[0]+a)|0;H[1]=(H[1]+b2)|0;H[2]=(H[2]+c)|0;H[3]=(H[3]+d)|0;H[4]=(H[4]+e)|0
 return H.map(x=>(x>>>0).toString(16).padStart(8,"0")).join("")}})();
 
 const USERS_NODE="sisUsers";                         /* Firebase node holding all user accounts */
-const ADMIN_WA="234XXXXXXXXXX";                      /* WhatsApp number that receives access requests */
-const MAIN_ADMIN={username:"YOUR_ADMIN_USERNAME",name:"Main Admin",userType:"admin",passHash:"YOUR_SHA256_ADMIN_PASSWORD_HASH"};
+const ADMIN_WA="2347062532805";                      /* WhatsApp number that receives access requests */
+const MAIN_ADMIN={username:"Agbeloba",name:"Main Admin",userType:"admin",passHash:"951a29bf9e2517529d8bd07a4785a1faf5851a9e46af987cfed10bad5105eab4"};
 const uKey=u=>String(u).trim().toLowerCase();
 const hashPw=(u,p)=>SHA("sis|"+uKey(u)+"|"+p);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -674,6 +992,7 @@ async function removeUser(k){
   try{await fj(uUrl(k),{method:"DELETE"});toast("User removed");loadUsers();}catch(e){toast("Could not remove. Check connection");}
 }
 authUI();
+render();poll();setInterval(poll,POLL_MS);
 </script>
 </body>
 </html>
